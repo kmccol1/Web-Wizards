@@ -2,7 +2,7 @@
 //
 //     Filename: SecurityFilterChainConfig.java
 //     Author: Kyle McColgan
-//     Date: 13 July 2026
+//     Date: 25 July 2026
 //     Description: This file implements a custom Security FilterChain configuration.
 //
 //***************************************************************************************
@@ -13,6 +13,7 @@ import com.mcckyle.ShowMOEvents.security.JwtAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.annotation.web.configurers.HeadersConfigurer;
@@ -39,13 +40,13 @@ public class SecurityFilterChainConfig
                 .csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(org.springframework.http.HttpMethod.OPTIONS, "/**").permitAll()
+                        .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                         .requestMatchers("/api/auth/signin",
                                          "/api/auth/register",
                                          "/api/auth/refresh",
                                          "/api/auth/validate",
                                          "/api/auth/logout",
-                                         "/api/notes/public/**").permitAll()
+                                         "/search/find-events").permitAll()
                         .requestMatchers("/api/auth/me").authenticated()
                         .anyRequest().authenticated()
                 )

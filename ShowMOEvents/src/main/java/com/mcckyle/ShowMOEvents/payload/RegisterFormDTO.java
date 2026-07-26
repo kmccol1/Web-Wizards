@@ -1,9 +1,7 @@
 package com.mcckyle.ShowMOEvents.payload;
 
-
-
-public class RegisterFormDTO extends LoginFormDTO {
-
+public class RegisterFormDTO extends LoginFormDTO
+{
     private String verifyPassword;
 
     public String getVerifyPassword() {
@@ -15,7 +13,3 @@ public class RegisterFormDTO extends LoginFormDTO {
     }
 
 }
-/*
- * Second round of validation with the annotations
- * Ensures that the password is verified correctly with the registration from/ form has two fields to verify.
- */

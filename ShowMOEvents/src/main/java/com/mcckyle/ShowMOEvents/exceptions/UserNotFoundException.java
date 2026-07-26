@@ -2,13 +2,13 @@
 //
 //     Filename: UserNotFoundException.java
 //     Author: Kyle McColgan
-//     Date: 31 November 2024
+//     Date: 25 July 2026
 //     Description: This file implements custom exception handling
 //                  to handle the lack of an existing user in the database.
 //
 //***************************************************************************************
 
-package com.mcckyle.pot_of_goals.Exceptions;
+package com.mcckyle.ShowMOEvents.exceptions;
 
 //***************************************************************************************
 

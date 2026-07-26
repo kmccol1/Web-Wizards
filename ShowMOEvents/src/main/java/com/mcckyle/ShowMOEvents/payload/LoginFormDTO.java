@@ -1,7 +1,5 @@
 package com.mcckyle.ShowMOEvents.payload;
 
-
-
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
