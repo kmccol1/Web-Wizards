@@ -1,7 +1,17 @@
+//***************************************************************************************
+//
+//     Filename: PostController.java
+//     Author: Kyle McColgan
+//     Date: 29 July 2026
+//     Description: This file contains the Post controller class.
+//
+//***************************************************************************************
+
 package com.mcckyle.ShowMOEvents.controllers;
 
 import com.mcckyle.ShowMOEvents.models.Post;
 import com.mcckyle.ShowMOEvents.data.PostRepository;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -26,11 +36,11 @@ public class PostController
     }
 
     @CrossOrigin
-    @PostMapping("/create")
-    public ResponseEntity<Post> createPost(@RequestBody Post post)
+    @PostMapping
+    public ResponseEntity<Post> createPost(@Valid @RequestBody Post post)
     {
         Post savedPost = postRepository.save(post);
-        return new ResponseEntity<>(savedPost, HttpStatus.CREATED);
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedPost);
     }
 
     //Read a single post...
@@ -40,7 +50,7 @@ public class PostController
     {
         Optional<Post> post = postRepository.findById(id);
 
-        if(post.isPresent())
+        if (post.isPresent())
         {
             return new ResponseEntity<>(post.get(), HttpStatus.OK);
         }
@@ -76,7 +86,7 @@ public class PostController
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletePost(@PathVariable Integer id)
     {
-        if(postRepository.existsById(id))
+        if (postRepository.existsById(id))
         {
             postRepository.deleteById(id);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -85,11 +95,5 @@ public class PostController
         {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-    }
-
-    @GetMapping("/hello")
-    public String testEndpoint()
-    {
-        return "Hello, from the test endpoint!";
     }
 }

@@ -2,7 +2,7 @@
 //
 //     Filename: SecurityFilterChainConfig.java
 //     Author: Kyle McColgan
-//     Date: 25 July 2026
+//     Date: 30 July 2026
 //     Description: This file implements a custom Security FilterChain configuration.
 //
 //***************************************************************************************
@@ -41,13 +41,18 @@ public class SecurityFilterChainConfig
                 .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-                        .requestMatchers("/api/auth/signin",
+                        .requestMatchers(
+                                "/api/auth/signin",
                                          "/api/auth/register",
                                          "/api/auth/refresh",
                                          "/api/auth/validate",
                                          "/api/auth/logout",
                                          "/search/find-events").permitAll()
                         .requestMatchers("/api/auth/me").authenticated()
+                        .requestMatchers(HttpMethod.GET, "/api/posts").authenticated()
+                        .requestMatchers(HttpMethod.POST, "/api/posts").authenticated()
+                        .requestMatchers(HttpMethod.PUT, "/api/posts/**").authenticated()
+                        .requestMatchers(HttpMethod.DELETE, "/api/posts/**").authenticated()
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class) //Add the JWT Filter.

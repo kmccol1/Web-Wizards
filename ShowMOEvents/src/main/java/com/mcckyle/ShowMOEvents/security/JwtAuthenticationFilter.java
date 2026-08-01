@@ -2,7 +2,7 @@
 //
 //     Filename: JwtAuthenticationFilter.java
 //     Author: Kyle McColgan
-//     Date: 13 July 2026
+//     Date: 31 July 2026
 //     Description: This file provides the auth token validation implementation.
 //
 //***************************************************************************************
@@ -17,6 +17,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 import java.io.IOException;
@@ -66,7 +67,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter
                 Integer userId = jwtUtils.getUserIdFromJwtToken(jwt);
                 //System.out.println("Token validated, userId: " + userId);
 
-                if ( (userId != null) && ( SecurityContextHolder.getContext().getAuthentication() == null) )
+                if ((userId != null) && (SecurityContextHolder.getContext().getAuthentication() == null))
                 {
                     try
                     {
@@ -80,9 +81,10 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter
 
                         SecurityContextHolder.getContext().setAuthentication(token);
                     }
-                    catch (org.springframework.security.core.userdetails.UsernameNotFoundException e)
+                    catch (UsernameNotFoundException e)
                     {
-                        response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "User not found. Please log in again.");
+                        e.printStackTrace();
+                        response.sendError(HttpServletResponse.SC_UNAUTHORIZED,  e.getMessage());
                         return; //Stop further filter processing.
                     }
                 }

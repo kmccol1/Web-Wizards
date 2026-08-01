@@ -2,7 +2,7 @@
 //
 //   Filename: SearchController.java
 //   Author: Kyle McColgan
-//   Date: 25 July 2026
+//   Date: 29 July 2026
 //   Description: This file provides Search functionality for the ShowMOEvents project.
 //
 //***************************************************************************************
@@ -24,8 +24,6 @@ public class SearchController
         this.eventService = eventService;
     }
 
-    //    @CrossOrigin("https://app.ticketmaster.com")
-//    @CrossOrigin("http://localhost:5173")
     @GetMapping("/find-events")
     public ResponseEntity<String> getNearbyEvents()
     {

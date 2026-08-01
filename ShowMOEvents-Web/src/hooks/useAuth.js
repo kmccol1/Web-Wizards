@@ -1,8 +1,8 @@
 //****************************************************************************************
 // Filename: useAuth.js
-// Date: 1 February 2026
+// Date: 29 July 2026
 // Author: Kyle McColgan
-// Description: This file contains frontend hook for auth within LoveNotes.
+// Description: This file contains frontend hook for auth within ShowMOEvents.
 //****************************************************************************************
 
 import { useState, useEffect, useContext } from 'react';
@@ -18,7 +18,7 @@ export default function useAuth()
 		let mounted = true;
 		
 		(async () => {
-			if ( ! accessToken)
+			if (!accessToken)
 			{
 				setAuthorized(false);
 				return;

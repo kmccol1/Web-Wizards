@@ -2,17 +2,14 @@
 //
 //     Filename: Event.java
 //     Author: Kyle McColgan
-//     Date: 14 July 2026
+//     Date: 31 July 2026
 //     Description: This file contains the Event entity class.
 //
 //***************************************************************************************
 
 package com.mcckyle.ShowMOEvents.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -20,6 +17,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 @Entity
+@Table(name = "events")
 public class Event
 {
     @Id
@@ -49,6 +47,11 @@ public class Event
         this.time = time;
         this.details = details;
     }
+
+    public Integer getId() {
+        return id;
+    }
+    public void setId(Integer id) {}
 
     public @NotNull String getTitle() {
         return title;

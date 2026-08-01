@@ -1,21 +1,22 @@
 //****************************************************************************************
 // Filename: AuthService.js
-// Date: 1 February 2026
+// Date: 29 July 2026
 // Author: Kyle McColgan
-// Description: This file contains frontend auth calls to the backend for LoveNotes.
+// Description: This file contains frontend auth calls to the backend for ShowMOEvents.
 //****************************************************************************************
 
 //Check if the user is authenticated using the backend cookie.
 export async function isAuthenticated(accessToken)
 {
-  try {
+  try
+  {
 	  const response = await fetch('http://localhost:8080/api/auth/validate', {
 		  method: 'GET',
 		  headers: { "Authorization": `Bearer ${accessToken}` },
 		  credentials: 'include' // important!!
 	  });
 	  
-	  if ( ! response.ok)
+	  if (!response.ok)
 	  {
 		  return false;
 	  }
@@ -40,7 +41,7 @@ export async function registerUser(data)
 		body: JSON.stringify(data)
 	});
 	
-	if ( ! response.ok)
+	if (!response.ok)
 	{
 		throw new Error("Registration failed!");
 	}

@@ -1,5 +1,10 @@
+//****************************************************************************************
+// Filename: CreatePost.jsx
+// Date: 29 July 2026
+// Author: Kyle McColgan
+// Description: This file contains a posts component for ShowMOEvents.
+//****************************************************************************************
 
-// src/pages/CreatePost.js
 const CreatePost = () => {
   return (
     <div>

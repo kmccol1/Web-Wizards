@@ -2,7 +2,7 @@
 //
 //     Filename: Comment.java
 //     Author: Kyle McColgan
-//     Date: 14 July 2026
+//     Date: 31 July 2026
 //     Description: This file contains the Comment entity class.
 //
 //***************************************************************************************
@@ -12,8 +12,10 @@ package com.mcckyle.ShowMOEvents.models;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import java.time.LocalDate;
+import java.util.Objects;
 
 @Entity
+@Table(name = "comments")
 public class Comment
 {
     @Id
@@ -47,6 +49,16 @@ public class Comment
         this.user = user;
     }
 
+    public Integer getId()
+    {
+        return id;
+    }
+
+    public void setId(Integer id)
+    {
+        this.id = id;
+    }
+
     public String getText() {
         return text;
     }
@@ -77,5 +89,23 @@ public class Comment
 
     public void setCreatedAt(LocalDate createdAt) {
         this.createdAt = createdAt;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Comment comment = (Comment) o;
+        return Objects.equals(id, comment.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
+    }
+
+    @PrePersist
+    public void prePersist()
+    {
+        createdAt = LocalDate.now();
     }
 }

@@ -1,8 +1,8 @@
 //****************************************************************************************
 // Filename: AuthContext.jsx
-// Date: 1 February 2026
+// Date: 29 July 2026
 // Author: Kyle McColgan
-// Description: This file contains frontend auth calls to the backend for LoveNotes.
+// Description: This file contains frontend auth calls to the backend for ShowMOEvents.
 //****************************************************************************************
 
 import { createContext, useState, useEffect } from "react";

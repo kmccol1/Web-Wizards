@@ -2,7 +2,7 @@
 //
 //     Filename: Post.java
 //     Author: Kyle McColgan
-//     Date: 14 July 2026
+//     Date: 31 July 2026
 //     Description: This file contains the Post entity class.
 //
 //***************************************************************************************
@@ -16,15 +16,17 @@ import jakarta.validation.constraints.Size;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
+@Table(name = "posts")
 public class Post
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotNull
+    @NotBlank
     @Size(min=5, max = 50)
     @Column(nullable = false)
     private String title;
@@ -46,6 +48,14 @@ public class Post
         this.title = title;
         this.content = content;
         this.comments = commentList;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public @NotNull String getTitle() {
@@ -88,5 +98,17 @@ public class Post
     {
         comments.remove(comment);
         comment.setPost(null);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Post post = (Post) o;
+        return Objects.equals(id, post.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
     }
 }
