@@ -1,6 +1,6 @@
 //****************************************************************************************
 // Filename: Header.jsx
-// Date: 15 July 2026
+// Date: 1 August 2026
 // Author: Kyle McColgan
 // Description: This file contains the Header component for ShowMOEvents.
 //****************************************************************************************
@@ -24,8 +24,8 @@ const Header = () => {
   const navigation = [
     { to: "/", label: "Home" },
 	{ to: "/search", label: "Search" },
-	{ to: "/create-post", label: "Create" },
-	{ to: "/event-manager", label: "Events" },
+	{ to: "/post", label: "Posts" },
+	{ to: "/event", label: "Events" },
 	{ to: "/about-us", label: "About" },
 	{ to: "/contact-us", label: "Connect" },
   ];

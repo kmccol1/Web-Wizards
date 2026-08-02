@@ -1,11 +1,11 @@
 //****************************************************************************************
-// Filename: postService.js
+// Filename: eventService.js
 // Date: 1 August 2026
 // Author: Kyle McColgan
-// Description: This file contains the frontend post service for ShowMOEvents.
+// Description: This file contains the frontend event service for ShowMOEvents.
 //****************************************************************************************
 
-const API_URL = "http://localhost:8080/api/posts";
+const API_URL = "http://localhost:8080/api/events";
 
 async function request(url, token, options = {})
 {
@@ -41,7 +41,7 @@ async function request(url, token, options = {})
 	return response.json();
 }
 
-export const postService = {
+export const eventService = {
 	getAll(token) {
 		return request(API_URL, token);
 	},
@@ -50,21 +50,21 @@ export const postService = {
 		return request(`${API_URL}/${id}`, token);
 	},
 	
-	create(post, token) {
-		console.log("postService.create called:", {
-			post,
+	create(event, token) {
+		console.log("eventService.create called:", {
+			event,
 			token,
 		});
 		return request(API_URL, token, {
 			method: "POST",
-			body: JSON.stringify(post),
+			body: JSON.stringify(event),
 		});
 	},
 	
-	update(id, post, token) {
+	update(id, event, token) {
 		return request(`${API_URL}/${id}`, token, {
 			method: "PUT",
-			body: JSON.stringify(post),
+			body: JSON.stringify(event),
 		});
 	},
 	

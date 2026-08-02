@@ -1,6 +1,6 @@
 //****************************************************************************************
 // Filename: App.jsx
-// Date: 29 July 2026
+// Date: 1 August 2026
 // Author: Kyle McColgan
 // Description: This file contains the entry point for ShowMOEvents.
 //****************************************************************************************
@@ -11,6 +11,7 @@ import PrivateRoute from "./components/auth/PrivateRoute";
 
 import Header from './components/Header/Header';
 import PostsPage from './pages/PostsPage/PostsPage';
+import EventsPage from './pages/EventsPage';
 import UserProfile from './UserProfile';
 import EventSearch from './components/EventSearch/EventSearch';
 import Login from './components/Login/Login';
@@ -20,7 +21,6 @@ import Settings from './components/Settings/Settings';
 import Home from './components/Home/Home';
 import AboutUs from './pages/AboutUs';
 import ContactUs from './pages/ContactUs';
-import EventManager from './pages/EventManager';
 
 import "./App.css";
 
@@ -45,8 +45,8 @@ const App = () =>
 				<Route path="/contact-us" element={<ContactUs />} />
 				
 				{/* 2. Protected Routes. */}
-				<Route path="/create-post" element={<PrivateRoute element={<PostsPage />} />} />
-				<Route path="/event-manager" element={<PrivateRoute element={<EventManager />} />} />
+				<Route path="/post" element={<PrivateRoute element={<PostsPage />} />} />
+				<Route path="/event" element={<PrivateRoute element={<EventsPage />} />} />
 				<Route path="/profile" element={<PrivateRoute element={<UserProfile />} />} />
 				<Route path="/search" element={<PrivateRoute element={<EventSearch />} />} />
 				<Route path="/settings" element={<PrivateRoute element={<Settings />} />} />

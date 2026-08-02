@@ -2,7 +2,7 @@
 //
 //     Filename: Event.java
 //     Author: Kyle McColgan
-//     Date: 31 July 2026
+//     Date: 1 August 2026
 //     Description: This file contains the Event entity class.
 //
 //***************************************************************************************
@@ -24,24 +24,28 @@ public class Event
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotNull
+    @NotBlank
     @Size(min = 5, max = 100)
+    @Column(nullable = false)
     private String title;
 
     @NotNull
+    @Column(nullable = false)
     private LocalDate date;
 
     @NotNull
+    @Column(nullable = false)
     private LocalTime time;
 
     @NotBlank
-    @Size(min = 5, max = 100)
+    @Size(min = 5, max = 500)
+    @Column(nullable = false)
     private String details;
 
-    public Event() {
-    }
+    public Event() {}
 
-    public Event(String title, LocalDate date, LocalTime time, String details) {
+    public Event(String title, LocalDate date, LocalTime time, String details)
+    {
         this.title = title;
         this.date = date;
         this.time = time;
@@ -51,7 +55,7 @@ public class Event
     public Integer getId() {
         return id;
     }
-    public void setId(Integer id) {}
+    public void setId(Integer id) { this.id = id; }
 
     public @NotNull String getTitle() {
         return title;
